@@ -1,0 +1,34 @@
+.video-wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-wrapper > video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.video-wrapper > video.width-max {
+  width: 100%;
+  height: auto;
+}
+
+.video-wrapper > video.height-max {
+  width: auto;
+  height: 100vh;
+}
+
+
+.video-wrapper2 {
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+}/* 유튜브 영상은 position: absolute 로 떠있음 but, YTplayer가 부모에 relative를 자동으로 넣어줌 */
