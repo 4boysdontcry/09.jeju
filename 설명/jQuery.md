@@ -1,5 +1,47 @@
-# jQuery 메서드 - 143개의 메서드
+# jQuery 메서드 - 종류별 분류
 
+## Selector(선택자)
+- $('대상') : css 선택자를 그대로 따른다.
+- children(), find(), parent(), parents(), prev(), next(), siblings()
+- index(), eq()
+- each() : 반복문
+
+## Event
+- on()
+- mouse: click(), mouseover(), mouseenter(), mouseleave(), wheel()
+- keyboard: keyup(), keydown(),
+- window: resize(), scroll()
+- form: submit(), reset()
+
+## Animation
+- show(), hide(), toggle()
+- fadeIn(), fadeOut(), fadeToggle()
+- slideDown(), slideUp(), slideToggle()
+- animate()
+
+## DOM - HTML 관리
+- empty(), remove()
+- append(), appendTo(), prepend(), prependTo()
+- html(), text()
+- val()
+- attr()
+
+## CSS - CSS 관리
+- css()
+- addClass(), removeCalss(), toggleClass(), hasClass()
+
+## Dimension
+- width(), innerWidth(), outerWidth(), outerWidth(true) 
+- height(), innerHeight(), innerWidth(), innerWidth(true),
+- offSet(), position(), scrollTop()
+
+## 통신Ajax(Asynchronous javascript and xml)
+- $.get(), $.post(), $.ajax()
+
+
+
+
+# jQuery 메서드 - 143개의 메서드
 
 ## add: ƒ (e,t)
 ### 설명: 
@@ -35,14 +77,14 @@
 ### 설명: 
 
 ## append: ƒ ()
-### 설명: 대상안의 뒤쪽에 html을 넣는다.
+### 설명: 대상안의 뒤에 html을 넣는다.
 ### return: $(대상)
 ```js
 $('대상').append('<div>hi</div>')
 ```
 
 ## appendTo: ƒ (e)
-### 설명: html을 대상안의 뒤쪽에 넣는다.
+### 설명: html을 대상안의 뒤에 넣는다.
 ### return: $(html)
 ```js
 $('<div>hi</div>').appendTo('대상')
@@ -271,15 +313,15 @@ $('.jq').empty()
 ### 설명: 
 
 ## on: ƒ (e,t,n,r)
-### 설명: 
-
-## one: ƒ (e,t,n,r)
 ### 설명: 이벤트를 등록한다.
 ```js
 $('.jq').on('click', function(){ 
 	// 할일
 })
 ```
+
+## one: ƒ (e,t,n,r)
+### 설명: 
 
 ## outerHeight: ƒ (e,t)
 ### 설명: 
@@ -300,15 +342,14 @@ $('.jq').on('click', function(){
 ### 설명: 
 
 ## prepend: ƒ ()
-### 설명: 대상안의 앞쪽에 html을 넣는다.
+### 설명: 대상안의 앞에 html을 넣는다.
 ### return: $(대상)
 ```js
 $('대상').prepend('<div>hi</div>')
 ```
 
-
 ## prependTo: ƒ (e)
-### 설명: html을 대상안의 앞쪽에 넣는다.
+### 설명: html을 대상안의 앞에 넣는다.
 ### return: $(html)
 ```js
 $('<div>hi</div>').prependTo('대상')
@@ -444,13 +485,13 @@ $('.jq').remove()
 ### 설명: 
 
 ## val: ƒ (n)
-### 설명: form요소(input, select ...)의 값을 반환한다(가져온다).
+### 설명: form요소(input, select ...)의 값을 반환한다.
 ```html
 <input type="text" id="username" value="홍길동">
 ```
 ```js
 var username = $('#username').val()		// 홍길동
-$('#username').val('홍길순')					// username의 value가 홍길순으로 바뀜
+$('#username').val('홍길순')					// username의 value가 '홍길순'으로 바뀐다.
 ```
 
 ## width: ƒ (e,t)
