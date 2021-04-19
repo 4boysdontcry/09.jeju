@@ -15,14 +15,14 @@ $(window).trigger('Scroll')
 
 
 
-/*************** 이벤트 콜백 *****************/
+/*************** 이벤트 콜백 *****************/			// offset: 해당 사진, div 등의 높이값
 function onScroll() {
 	var windowHeight = $(this).innerHeight()
 	var scrollTop = $(this).scrollTop()
 	var pageOffset = []
 	var page
-	var gap = 200
-	$('.page').each(function(i){
+	var gap = 300
+	$('.content').each(function(i){
 		pageOffset[i] = $(this).offset().top
 	})
 
@@ -31,9 +31,10 @@ function onScroll() {
 	}
 	page = i - 1
 	console.log(page)
-	$('.page').eq(page).find('.content').addClass('active')
-}
+	$('.content').eq(page).addClass('active')
+	// $('.content').eq(page).addClass('active animate rubberBand delay-5s')
 
+}
 
 
 
