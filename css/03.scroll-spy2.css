@@ -3,9 +3,5 @@
 .page3 {min-height: 70vh; background-color: darkslategray;}
 .page4 {min-height: 120vh; background-color: hotpink;}
 
-.content {opacity: 0; transition: all .5s;}
-.content.active {opacity: 1;  
-    animation-name: bounce; 
-    animation-duration: 2s;
-    animation-delay: 1s;
-}
+.content {opacity: 0;}
+.content.active {opacity: 1;}

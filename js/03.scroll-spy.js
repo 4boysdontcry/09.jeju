@@ -32,7 +32,7 @@ function onScroll() {
 	page = i - 1
 	console.log(page)
 	$('.content').eq(page).addClass('active')
-	// $('.content').eq(page).addClass('active animate rubberBand delay-5s')
+	// $('.content').eq(page).addClass('active animated rubberBand')
 
 }
 
