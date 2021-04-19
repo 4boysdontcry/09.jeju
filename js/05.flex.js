@@ -15,7 +15,7 @@ $('.bt-grow').click(onGrow)
 function onShuffle() {
 	// $('.box-wrapper1 > .box')
 	// $('.box-wrapper1').children('.box')
-	$('.box-wrapper1').find('.box').each(function(i) {
+	$('.box-wrapper1').find('.box').each(function(i) {          /* function(i)에서의 i는 index값을 가져오는 역할 */
 		var order = Math.floor(Math.random() * 5) + 1
 		$(this).css('order', order)
 	})
