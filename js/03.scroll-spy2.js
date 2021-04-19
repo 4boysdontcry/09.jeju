@@ -1,1 +1,1 @@
-spyScroll('.content', 'active animated rubberBand')
+scrollSpy('.content', 'active animated rubberBand')

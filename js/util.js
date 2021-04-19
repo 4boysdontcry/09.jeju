@@ -11,9 +11,9 @@ function sortDesc(key) {
 }
 
 /*************** scroll spy *****************/			// offset: 해당 사진, div 등의 높이값
-function spyScroll(el, cls, _gap) {
+function scrollSpy(el, cls, _gap) {
   $(window).scroll(onSpyScroll).trigger('Scroll')
-  function onSpyScroll() {
+  function onScrollSpy() {
     var windowHeight = $(this).innerHeight()
     var scrollTop = $(this).scrollTop()
     var pageOffset = []
