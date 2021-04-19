@@ -1,0 +1,83 @@
+/********************** 글로벌 설정 *********************/
+html, body {height: 10000px; }
+.wrapper {max-width: 1200px; margin: auto;}
+
+
+/**********************  *********************/
+.header-wrapper {background-color: #eee;}
+
+.header-wrapper .logo {padding: 1em 1.5em;}
+.header-wrapper .logo:hover {background-color: #444; color: f9f9f9;}
+.header-wrapper .navi-wrap .navi {padding: 1em 1.5em;}
+.header-wrapper .navi-wrap .navi:hover {background-color: #444; color: f9f9f9;}
+
+.navi-wrapper {display: flex; justify-content: space-between;}
+.navi-wrapper > .logo {}
+.navi-wrapper > .navi-wrap {display: flex;}
+.navi-wrapper > .navi-wrap > .navi {}
+
+
+
+
+
+/********************** basic-set *********************/
+.title {margin-top: 30px; font-size: 1.5em; }
+.box-wrapper {background-color: bisque; margin-top: 10px;}
+.box-wrapper > .box {background-color: rgb(29, 29, 109); width: 200px; height: 200px; border: 10px solid #6fb6b8; color: #6fb6b8; font-weight: bold; font-size: 50px;
+    display: flex; justify-content: center; align-items: center; vertical-align: top;}
+
+.box-wrapper.sample2 {height: 500px; }
+.box-wrapper.sample2 > .box {width: 100px; height: auto;}
+
+/********************** flex-option *********************/
+.box-wrapper {display: flex; flex-wrap: wrap;}      /* flex-wrap: wrap 을 해줘야 반응형으로 바뀜 */
+.box-wrapper1 {justify-content: flex-start;}
+.box-wrapper2 {justify-content: center;}
+.box-wrapper3 {justify-content: flex-end;}
+.box-wrapper4 {justify-content: space-between;}
+.box-wrapper5 {justify-content: space-evenly;}
+.box-wrapper6 {justify-content: space-around;}
+
+
+.box-wrapper7 {justify-content: center; align-items: stretch;}
+.box-wrapper8 {justify-content: space-between; align-items: flex-start;}
+.box-wrapper9 {justify-content: flex-start; align-items: flex-end;}
+.box-wrapper10 {justify-content: space-evenly; align-items: center;}
+
+
+/********************** modal 정렬 *********************/
+.modal-wrapper {background-color: rgba(0, 0, 0, .8); width: 100%; height: 100vh;
+    display: flex; justify-content: center; align-items: center;}
+    .modal-wrapper > .modal-wrap {width: 30%; height: 30vh; background-color: #fff;}
+    
+
+/********************** modal 정렬 *********************/
+.box-wrapper.sample3 {height: 500px;}
+.box-wrapper.sample3 > .box {width: 100px; height: 100px;}
+.box-wrapper.box-wrapper11 {display: flex; flex-direction: row; justify-content: flex-end; align-items: center;}
+.box-wrapper.box-wrapper12 {display: flex; flex-direction: row-reverse;}
+.box-wrapper.box-wrapper13 {display: flex; flex-direction: column; justify-content: center; align-items: flex-end;}     /* 세로축으로 바뀌기때문에 justufy와 align의 축도 바뀐다. */
+.box-wrapper.box-wrapper14 {display: flex; flex-direction: column-reverse;}
+
+
+
+/********************** 반응형 설정 *********************/
+@media (max-width: 1399px) {
+    
+}
+
+@media (max-width: 1199px) {
+    
+}
+
+@media (max-width: 991px) {
+    
+}
+
+@media (max-width: 767px) {
+    
+}
+
+@media (max-width: 575px) {
+    
+}
