@@ -1,5 +1,5 @@
 /********************** 글로벌 설정 *********************/
-html, body {height: 10000px; }
+html, body {height: 20000px; }
 .wrapper {max-width: 1200px; margin: auto;}
 
 
@@ -30,7 +30,7 @@ html, body {height: 10000px; }
 .box-wrapper.sample2 > .box {width: 100px; height: auto;}
 
 /********************** flex-option *********************/
-.box-wrapper {display: flex; flex-wrap: wrap;}      /* flex-wrap: wrap 을 해줘야 반응형으로 바뀜 */
+.box-wrapper {display: flex; flex-wrap: wrap;}      /* flex-wrap: wrap 을 해줘야 반응형으로 바뀜(넘쳐서 밀려나기 허용) */
 .box-wrapper1 {justify-content: flex-start;}
 .box-wrapper2 {justify-content: center;}
 .box-wrapper3 {justify-content: flex-end;}
@@ -45,13 +45,13 @@ html, body {height: 10000px; }
 .box-wrapper10 {justify-content: space-evenly; align-items: center;}
 
 
-/********************** modal 정렬 *********************/
+/**********************  *********************/
 .modal-wrapper {background-color: rgba(0, 0, 0, .8); width: 100%; height: 100vh;
     display: flex; justify-content: center; align-items: center;}
     .modal-wrapper > .modal-wrap {width: 30%; height: 30vh; background-color: #fff;}
     
 
-/********************** modal 정렬 *********************/
+/********************** flex-direction *********************/
 .box-wrapper.sample3 {height: 500px;}
 .box-wrapper.sample3 > .box {width: 100px; height: 100px;}
 .box-wrapper.box-wrapper11 {display: flex; flex-direction: row; justify-content: flex-end; align-items: center;}
@@ -59,6 +59,21 @@ html, body {height: 10000px; }
 .box-wrapper.box-wrapper13 {display: flex; flex-direction: column; justify-content: center; align-items: flex-end;}     /* 세로축으로 바뀌기때문에 justufy와 align의 축도 바뀐다. */
 .box-wrapper.box-wrapper14 {display: flex; flex-direction: column-reverse;}
 
+
+/********************** justify-items *********************/
+.box-wrapper.sample4 {height: 500px; justify-content: center; align-items: center; align-content: center;}
+.box-wrapper.sample4 > .box {width: 120px; height: 80px; font-size: 1em; border-width: 3px;}
+
+.box-wrapper.box-wrapper15 {align-content: normal;}
+.box-wrapper.box-wrapper16 {align-content: center;}
+.box-wrapper.box-wrapper17 {align-content: flex-start;}
+.box-wrapper.box-wrapper18 {align-content: flex-end;}
+.box-wrapper.box-wrapper19 {align-content: space-between;}
+.box-wrapper.box-wrapper20 {align-content: space-around;}
+.box-wrapper.box-wrapper21 {align-content: space-evenly;}
+.box-wrapper.box-wrapper22 {align-content: stretch; align-items: stretch;}
+
+.box-wrapper.box-wrapper22 > .box {height: auto;}
 
 
 /********************** 반응형 설정 *********************/
