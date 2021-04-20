@@ -4,6 +4,9 @@
 html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif;}
 .wrapper {max-width: 1368px; margin: auto;}
 
+.bt-ghost {padding: .875em 1.75em; border: 1px solid #999; color: #f9f9f9; transition: all .3s;}
+.bt-ghost:hover {background-color: #f9f9f9; color: #b38859;}
+.bt-anchor {text-decoration: underline;}
 
 
 /********************** header-wrapper *********************/
@@ -15,6 +18,10 @@ html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif;}
 .header-wrapper .notice-wrap > .bt-close {cursor: pointer; font-size: 1.75em;}
 
 .header-wrapper .notice-content {padding-left: 4rem;}
+.header-wrapper .notice-content > .content {font-size: 1.125em; line-height: 1.5; color: #bbb; margin-bottom: 1.5em;}
+.header-wrapper .notice-content > .bt-wrap {padding-bottom: 2em; display: flex; justify-content: space-between; align-items: flex-end;}
+.header-wrapper .notice-content .bt-today {color: #f9f9f9;}
+
 
 
 /********************** footer-wrapper *********************/
