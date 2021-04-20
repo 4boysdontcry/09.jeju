@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;500;600&display=swap');
+/* font-family: 'Jost', sans-serif; */
 
 /********************** 글로벌 설정 *********************/
 html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif;}
@@ -15,7 +17,7 @@ html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif;}
 
 
 /********************** header-wrapper *********************/
-.header-wrapper {font-size: 1em; position: fixed; width: 100%;}
+.header-wrapper {font-size: 1em; position: fixed; width: 100%; z-index: 2;}
 
 .header-wrapper > .notice-wrapper {background-color: #28354b; color: #fff;}
 .header-wrapper .notice-wrap {display: flex; padding: 1em 0; align-items: center;}
