@@ -3,9 +3,9 @@ init()    //페이지를 열자마자 실행될 함수
 
 /*************** 사용자 함수 *****************/
 function init() {
-	if($.cookie('hideNotice') === 'Y') onCloseNotice()
+	if($.cookie('hideNotice') === 'Y') onCloseNotice()      //cookie가 실행되어있으면 숨겨라
 	else {
-		$('.header-wrapper').find('.notice-content').hide()
+		$('.header-wrapper').find('.notice-content').hide()     //기본적으로 숨기는 애들
 		$('.header-wrapper').find('.bt-hide').hide()
 	}
 }
