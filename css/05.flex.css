@@ -17,6 +17,7 @@ html, body {height: 20000px; text-align: center;}
 .box-wrapper1 > .box:nth-child(5) {background-color: darkslateblue;}
 
 /* 기본값 - flex-grow: 0, flex-shrink: 1 | flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
+/* flex: flex-grow, flex-shrink, flex-basis; 로 축약하여 작성가능 */
 /* .box-wrapper2 > .box {flex-grow: 1; flex-shrink: 1; width: 200px; height: 200px; transition: all 2s;} */
 .box-wrapper2 > .box {flex: 1 1 200px;}
 .box-wrapper2 > .box:hover {flex-grow: 8; height: 200px; transition: all 2s;}

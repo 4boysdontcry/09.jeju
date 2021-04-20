@@ -5,7 +5,7 @@ initCommon()    //페이지를 열자마자 실행될 함수
 function initCommon() {
 	if($.cookie('hideNotice') === 'Y') onCloseNotice()      //cookie가 실행되어있으면 숨겨라
 	else {
-		$('.header-wrapper').find('.notice-content').hide()     //기본적으로 숨기는 애들
+		$('.header-wrapper').find('.notice-content').hide()     //기본적으로 숨기는 애들(원래 얘네만 있었는데 function이 생기면서 안으로 들어옴)
 		$('.header-wrapper').find('.bt-hide').hide()
 	}
 }
