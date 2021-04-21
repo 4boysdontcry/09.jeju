@@ -6,12 +6,10 @@
 
 
 /*************** 이벤트 등록 *****************/
-$('slider-wrapper .slider1').click(showImg1)
+
 
 
 /*************** 이벤트 콜백 *****************/
-function showImg1(){
-  $('main-img1').show()
-  $('content-wrapper').hide()
-  $('main-img2').hide()
-}
+
+
+

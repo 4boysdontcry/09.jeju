@@ -1,12 +1,6 @@
 /********************** main-wrapper *********************/
-.main-wrapper {position: relative;}
-.main-wrapper .main-img2 {display: none;}
-.main-wrapper .content-wrapper {position: absolute; top: 40%; left: 18%; text-align: center;}
-.main-wrapper .content-wrapper > .slogan {color: #fff; font-family: 'Jost', sans-serif; font-size: 5em; margin-bottom: 1em; font-weight: 600;
-text-shadow: rgba(0, 0, 0, 1);}
+.main-wrapper {}
 
-.main-wrapper .slider-wrapper {position: absolute; bottom: 25%; left: 46%;}
-.main-wrapper .slider-wrapper > .slider {color: #fff; margin-right: 1em;}
 
 /********************** dream-wrapper *********************/
 
