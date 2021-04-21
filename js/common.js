@@ -23,12 +23,12 @@ function scrollNotice(scTop) {
 		$header.css('top', 'unset')
 		$header.removeClass('active')
 	}
-	// else if(scTop < 150) {
-	// 	$notice.hide()
-	// 	$link.hide()
-	// 	$header.css('top', 'unset')
-	// 	$header.removeClass('active')
-	// }
+/* 	else if(scTop < 150) {
+		$notice.hide()
+		$link.hide()
+		$header.css('top', 'unset')
+		$header.removeClass('active')
+	} */
 	else {
 		$notice.hide()
 		$link.hide()
