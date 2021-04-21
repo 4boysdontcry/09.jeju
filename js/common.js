@@ -1,67 +1,75 @@
 /*************** 글로벌 설정 *****************/
-initCommon()    //페이지를 열자마자 실행될 함수
+initCommon()
 
 /*************** 사용자 함수 *****************/
 function initCommon() {
-	if($.cookie('hideNotice') === 'Y') onCloseNotice()      //cookie가 실행되어있으면 숨겨라
+	if($.cookie('hideNotice') === 'Y') onCloseNotice()
 	else {
-		$('.header-wrapper').find('.notice-content').hide()     //기본적으로 숨기는 애들(원래 얘네만 있었는데 function이 생기면서 안으로 들어옴)
-		$('.header-wrapper').find('.bt-hide').hide()
+		$('.notice-wrapper').find('.notice-content').hide()
+		$('.notice-wrapper').find('.bt-hide').hide()
 	}
 }
 
-
 /*************** 이벤트 등록 *****************/
-$('.header-wrapper .bt-show').click(onShowNotice)
-$('.header-wrapper .bt-hide').click(onHideNotice)
-$('.header-wrapper .bt-close').click(onCloseNotice)
-$('.header-wrapper .bt-today').click(onHideTodayNotice)
-// $('.header-wrapper .link-lang').click(onToggleLang).mouseenter(onShowLang).mouseleave(onHideLang)
+$(window).scroll(onScroll).trigger('scroll')
+
+$('.notice-wrapper .bt-show').click(onShowNotice)
+$('.notice-wrapper .bt-hide').click(onHideNotice)
+$('.notice-wrapper .bt-close').click(onCloseNotice)
+$('.notice-wrapper .bt-today').click(onHideTodayNotice)
+
 $('.header-wrapper .link-lang').click(onToggleLang)
 $('.header-wrapper .link-lang').mouseenter(onShowLang)
 $('.header-wrapper .link-lang').mouseleave(onHideLang)
 $('.header-wrapper .link-lang .lang').click(onChgLang)
 
 
-
 /*************** 이벤트 콜백 *****************/
-function onShowNotice(){
-  $('.header-wrapper').find('.bt-show').hide()
-  $('.header-wrapper').find('.bt-hide').show()
-  $('.header-wrapper').find('.notice-content').show()
+function onScroll(e) {
+	var scTop = $(this).scrollTop()
+	var noticeGap = 5
+	/***** notice-wrapper 제어 *****/
+	
 }
 
-function onHideNotice(){
-  $('.header-wrapper').find('.bt-show').show()
-  $('.header-wrapper').find('.bt-hide').hide()
-  $('.header-wrapper').find('.notice-content').hide()
+function onShowNotice(e) {
+	$('.notice-wrapper').find('.bt-show').hide()
+	$('.notice-wrapper').find('.bt-hide').show()
+	$('.notice-wrapper').find('.notice-content').show()
 }
 
-function onCloseNotice (){
-  $('.header-wrapper').find('.notice-wrapper').hide()
+function onHideNotice(e) {
+	$('.notice-wrapper').find('.bt-show').show()
+	$('.notice-wrapper').find('.bt-hide').hide()
+	$('.notice-wrapper').find('.notice-content').hide()
 }
 
-function onHideTodayNotice(){
-  $.Cookie('hideNotice', 'Y', { expires: 1, path: '/' })
-  onCloseNotice()
+function onCloseNotice(e) {
+	$('.notice-wrapper').hide()
 }
 
-function onToggleLang(){
-  $('.header-wrapper .link-lang .hover').toggle()
+function onHideTodayNotice(e) {
+	$.cookie('hideNotice', 'Y', { expires: 1, path: '/' })
+	onCloseNotice()
 }
 
-function onShowLang(){
-  $('.header-wrapper .link-lang .hover').show()
+function onToggleLang(e) {
+	$('.header-wrapper .link-lang .hover').toggle()
 }
 
-function onHideLang(){
-  $('.header-wrapper .link-lang .hover').hide()
+function onShowLang(e) {
+	$('.header-wrapper .link-lang .hover').show()
 }
 
-function onChgLang(){
-  var $span = $(this).parent().prev().find('span')      //리뷰 필수!
-  var myLang =  $(this).text()
-  var spanLang = $span.text()
-  $span.text(myLang)
-  $(this).text(spanLang)
+function onHideLang(e) {
+	$('.header-wrapper .link-lang .hover').hide()
 }
+
+function onChgLang(e) {
+	var $span = $(this).parent().prev().find('span')
+	var myLang = $(this).text()
+	var spanLang = $span.text()
+	$span.text(myLang)
+	$(this).text(spanLang)
+}
+
