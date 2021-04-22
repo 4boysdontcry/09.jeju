@@ -25,6 +25,7 @@ $(function() {
 	/*************** 사용자 함수 *****************/
 	function init() {
 		$slide.eq(idx).css('z-index', depth++)
+    $slide.addClass('active')
 		onAni()
 	}
 
