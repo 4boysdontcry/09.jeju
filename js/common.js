@@ -1,3 +1,27 @@
+// IIFE -> ()() : 최대한 전역변수를 사용하지 않기 위해 사용
+/*
+(function(){
+	alert('hi')
+})()
+
+------------------------------------
+
+window.onload = function(){			js파일을 head에 넣을때 파일의 내용 전체를 이 함수로 감싸주면 js가 적용됨
+	alert('hi2')
+}
+
+$(document).ready(function(){
+	alert('hi3')
+})
+
+$(function(){
+	alert('hi4')
+})
+*/
+
+/*************** header-wrapper *****************/
+$(function(){
+
 /*************** 글로벌 설정 *****************/
 initCommon()
 
@@ -118,3 +142,5 @@ function onChgLang() {
 	$(this).text(spanLang)
 }
 
+
+})
