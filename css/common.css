@@ -110,6 +110,7 @@ body {
   position: fixed;
   width: 100%;
   transition: top 0.35s;
+  z-index: 99;
 }
 
 .header-wrapper .link-wrapper {
