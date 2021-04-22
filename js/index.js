@@ -34,6 +34,7 @@ $(function() {
 	video.addEventListener('loadeddata', onLoadedVideo)
 	video.addEventListener('ended', onPlay)
 
+  
 	/*************** 이벤트 콜백 *****************/
 	function onLoadedVideo() {
 		if(video.readyState >= 2) {
