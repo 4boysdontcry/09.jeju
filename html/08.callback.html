@@ -1,0 +1,41 @@
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+function find(arr, search, fn) {
+	var idx = arr.indexOf(search)
+	fn(arr[idx], idx)
+}
+
+var arr = ['A', 'B', 'C']
+// find(arr, 'A', function(v, i) {
+// 	if(i == -1) alert('포함이 안되어 있어요~')
+// 	else alert(v + '는 포함되어 있어요~')
+// })
+
+    // https://api.openweathermap.org/data/2.5/weather?lat=위도&lon=경도&units=metric&appid=키값
+    // b643d1c36ef820780490b2d990f49c60
+    // https://api.openweathermap.org/data/2.5/weather?lat=37.566535&lon=126.97796919&units=metric&appid=b643d1c36ef820780490b2d990f49c60
+
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError)
+
+var url = 'https://api.openweathermap.org/data/2.5/weather'
+var data = {
+    appid: 'b643d1c36ef820780490b2d990f49c60',
+    units: 'metric',
+}
+        function onSuccess(r){
+            data.lat = r.coords.latitude,
+            data.lon = r.coords.longitude
+            $.get(url, data, onGetData)
+        }
+        
+        function onError(err){
+            data.lat = 37.566873
+            data.lon = 126.977945
+            $.get(url, data, onGetData)
+        }
+
+        function onGetData(r){
+            console.log(r)
+        }
+</script>
