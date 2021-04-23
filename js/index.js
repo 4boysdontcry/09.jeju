@@ -87,8 +87,8 @@ $(function() {
 		if(e !== 'pager') idx = (idx == lastIdx) ? 0 : idx + 1
 		$pagerSlide.find('.pager').removeClass('active')
 		$pagerSlide.find('.pager').eq(idx).addClass('active')
-		$slide.eq(idx).css({'z-index': depth++, 'left': '100%'})
 		$slide.removeClass('active')
+		$slide.eq(idx).css({'z-index': depth++, 'left': '100%'})
 		$slide.eq(idx).stop().animate({'left': 0}, speed, ani)
 	}
 
