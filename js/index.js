@@ -83,8 +83,11 @@ $(function() {
 	/*************** 이벤트 콜백 *****************/
 	function onGetWeather(r){
 		console.log(r)
-		$weather.find('.icon').addClass(weatherIcon['i'+r.weather[0].icon])
+		$weather.find('.icon').addClass(weatherIcon['i'+r.weather[0].icon])		// bootstrap 아이콘으로 바꿈
 		$weather.find('.temp').text(r.main.temp)
+		$weather.find('.date').text(moment(r.dt * 1000).format('YYYY. M. D. ddd'))
+		$weather.find('.time > span').text(moment(r.dt * 1000).format('hh:mm'))
+		$weather.find('.time > small').text(moment(r.dt * 1000).format('A'))
 	}
 
 	function onGetGeo(r) {					// r값은 weather()실행을 통해 가져온 날씨 정보
