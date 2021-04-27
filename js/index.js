@@ -14,7 +14,7 @@ $(function() {
 	var $slide = $('.main-wrapper .slide')
 	var $pagerSlide = $('.main-wrapper .pager-slide')
 	var video = $('.main-wrapper .video')[0]
-	var $weather = $('.main-wrapper .weather')
+	var $weather = $('.main-wrapper .weather') 
 	var len = $slide.length
 	var lastIdx = len - 1
 	var depth = 2
@@ -25,7 +25,7 @@ $(function() {
 	var weatherURL = 'https://api.openweathermap.org/data/2.5/weather'
 	var weatherData = {
 		appid: '02efdd64bdc14b279bc91d9247db4722',
-		units: 'metric',
+		units: 'metric'
 	}
 	var weatherIcon = {
 		i01d: 'bi-brightness-high',
@@ -35,7 +35,7 @@ $(function() {
 		i03d: 'bi-cloud',
 		i03n: 'bi-cloud-fill',
 		i04d: 'bi-clouds',
-		i04n: 'bi-clouds-fill',
+		i04n: 'bi-cloud-fills',
 		i09d: 'bi-cloud-rain-heavy',
 		i09n: 'bi-cloud-rain-heavy-fill',
 		i10d: 'bi-cloud-drizzle',
@@ -52,6 +52,7 @@ $(function() {
 	
 	/*************** 사용자 함수 *****************/
 	function init() {
+		if($.cookie('hideCookie') === 'Y') onCloseCookie()
 		$slide.eq(idx).css('z-index', depth++)
 		$slide.eq(idx).addClass('active')
 
@@ -65,41 +66,46 @@ $(function() {
 		ani()
 	}
 
-	function weather(){
-		//위치정보 가져오기 (못가져오면 제주도 날씨 33.485186609684426, 126.48857726204541)
+	function weather() {
+		// 위치정보 가져오기(못 가져오면 제주도 보이기 33.485739737138786, 126.48154043372092)
 		navigator.geolocation.getCurrentPosition(onGetGeo, onErrorGeo)
-
 	}
+
 
 	/*************** 이벤트 등록 *****************/
 	video.addEventListener('loadeddata', onLoadedVideo)
 	video.addEventListener('ended', onPlay)
 	$('.bt-video').click(onModalVideo)
 	$('.modal-video').find('.bt-close').click(onModalVideoClose)
-	$('.cookie-wrapper').find('.bt-close').click(onCookieClose)
+	$('.cookie-wrapper').find('.bt-close').click(onCloseCookie)
+	$('.cookie-wrapper').find('.bt-confirm').click(onCloseTodayCookie)
 
 
 
 	/*************** 이벤트 콜백 *****************/
-	function onGetWeather(r){
+	function onCloseTodayCookie() {
+		$.cookie('hideCookie', 'Y', { expires: 1, path: '/' })
+		onCloseCookie()
+	}
+
+	function onGetWeather(r) {
 		console.log(r)
-		$weather.find('.icon').addClass(weatherIcon['i'+r.weather[0].icon])		// bootstrap 아이콘으로 바꿈
+		$weather.find('.icon').addClass(weatherIcon['i'+r.weather[0].icon])
 		$weather.find('.temp').text(r.main.temp)
 		$weather.find('.date').text(moment(r.dt * 1000).format('YYYY. M. D. ddd'))
 		$weather.find('.time > span').text(moment(r.dt * 1000).format('hh:mm'))
 		$weather.find('.time > small').text(moment(r.dt * 1000).format('A'))
 	}
 
-	function onGetGeo(r) {					// r값은 weather()실행을 통해 가져온 날씨 정보
+	function onGetGeo(r) {
 		weatherData.lat = r.coords.latitude
 		weatherData.lon = r.coords.longitude
 		$.get(weatherURL, weatherData, onGetWeather)
-		
 	}
 
-	function onErrorGeo(err) {
-		weatherData.lat = 33.485186609684426
-		weatherData.lon = 126.48857726204541
+	function onErrorGeo() {
+		weatherData.lat = 33.485739737138786
+		weatherData.lon = 126.48154043372092
 		$.get(weatherURL, weatherData, onGetWeather)
 	}
 
@@ -108,7 +114,7 @@ $(function() {
 		onPlay('pager')
 	}
 
-	function onCookieClose() {
+	function onCloseCookie() {
 		$('.cookie-wrapper').hide()
 	}
 
