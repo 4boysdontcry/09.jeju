@@ -10,6 +10,10 @@ html, body {font-size: 16px; font-family: 'Jost', 'Noto Sans KR', sans-serif; he
 .bt-ghost:hover {background-color: #fff; color: #b38859;}
 .bt-ghost.gold {border: 1px solid #fff;}
 .bt-ghost.gold:hover {background-color: #b38859; color: #fff !important;}
+
+.bt-ghost.white {border: 1px solid #ccc; color: #999;}
+.bt-ghost.white:hover {background-color: #b38859; color: #fff !important;}
+
 .bt-ghost.angle::after {content: '〉'; display: inline-block; margin-left: .5em; margin-right: -.5em;}
 .bt-anchor {text-decoration: underline;}
 
@@ -28,7 +32,7 @@ html, body {font-size: 16px; font-family: 'Jost', 'Noto Sans KR', sans-serif; he
 .pager-wrapper .swiper-pagination-bullet-active {border: 1px solid #fff; background-color: transparent; transform: scale(1); opacity: 1;}
 
 /* bt-slide */
-.bt-slide {background-color: #ddd; color: #444; width: 60px; height: 60px; position: absolute; top: calc(50% - 30px); z-index: 90; border-radius: 50%;
+.bt-slide {background-color: #ddd; color: #777; width: 60px; height: 60px; position: absolute; top: calc(50% - 30px); z-index: 90; border-radius: 50%;
 display: flex; align-items: center; justify-content: center; font-size: 2em; cursor: pointer;}
 .bt-slide.left {left: 0;}
 .bt-slide.right {right: 0;}
