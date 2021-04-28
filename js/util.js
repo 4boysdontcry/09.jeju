@@ -35,7 +35,6 @@ function scrollSpy(el, cls, _gap) {
 
 
 /*************** getSwiper *****************/
-function getSwiper(el, opt) {
 /*
 - cls : '.promo-wrapper
 - opt 
@@ -50,6 +49,7 @@ function getSwiper(el, opt) {
 	break: 1
 }
 */
+function getSwiper(el, opt) {
 	var opt = opt || {}
 	var autoEl = el + ' ' + (opt.autoEl || '.slide-stage')
 	var pagination = (opt.pager === false) ? false : {
@@ -112,19 +112,15 @@ function getSwiper(el, opt) {
 	})
 
 	function onResize(e) {
-		$(el + '.ratio').each(function(i) {
+		$(el + ' .ratio').each(function(i) {
 			var ratio = $(this).data('ratio') // data-ratio
 			var width = $(this).innerWidth()
 			var height = width * Number(ratio)
 			$(this).innerHeight(height)
 		})
 	}
-
+	
 	$(window).resize(onResize).trigger('resize')
 
 	return swiper
-}
-
-function swiperHover(swiper, el) {
-	
 }
