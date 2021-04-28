@@ -19,7 +19,6 @@ $(function () {
 	slideDream()
 	slidePromo()
 
-
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper')
 		var $cookieClose = $cookieWrapper.find('.bt-close')
@@ -164,49 +163,40 @@ $(function () {
 	}
 
 	function slideDream() {
-		var swiper = new Swiper('.dream-wrapper .swiper-container', {
-			pagination: {
-				el: '.dream-wrapper .pager-wrapper',
-				clickable: true
-			},
-			navigation: {
-				nextEl: '.dream-wrapper .bt-slide.right',
-				prevEl: '.dream-wrapper .bt-slide.left',
-			},
-			autoplay: {
-				delay: 3000,
-			},
-			loop: true,
-			slidesPerView: 1,
-			spaceBetween: 40,
-			breakpoints: {
-				576: {
-					slidesPerView: 2,
-				},
-				992: {
-					slidesPerView: 3,
-				}
-			}
-		});
-
-		$('.dream-wrapper .slide-stage').hover(function(){
-			swiper.autoplay.stop()
-		}, function(){
-			swiper.autoplay.start()
-		})
+		var el = '.dream-wrapper'
+		var elSwiper = '.dream-wrapper .swiper-container'
+		var swiper = new Swiper(elSwiper, getSwiperOptions(el, { break: 3 })
+		);
+		swiperHover(swiper, el)
 	}
 
-	function slidePromo(){
+	function slidePromo() {
 		var $promoWrapper = $('.promo-wrapper')
+		var $slideWrap = $promoWrapper.find('.slide-wrap')
 
-		function onGetData(r){
-			console.log(r)
-
+		function onGetData(r) {
+			// for(var i=0; i<r.promo.length; i++) {}
+			r.promo.forEach(function(v, i) {
+				var html = ''
+				html += '<li class="slide swiper-slide">';
+				html += '<div class="img-wrap">';
+				html += '<img src="'+v.src+'" alt="메뉴" class="w-100">';
+				html += '</div>';
+				html += '<div class="cont-wrap">';
+				html += '<h3 class="title">'+v.title+'</h3>';
+				html += '<div class="desc">'+v.desc+'</div>';
+				html += '</div>';
+				html += '</li>';
+				$slideWrap.append(html)
+			})
+			var el = '.promo-wrapper'
+		var elSwiper = '.promo-wrapper .swiper-container'
+		var swiper = new Swiper(elSwiper, getSwiperOptions(el, { break: 4 })
+		);
+		swiperHover(swiper, el)
 		}
 
-		$.get('../json/promotion.json', onGetData)		// ajax 통신
+		$.get('../json/promotion.json', onGetData)
 	}
-
-
 
 })
