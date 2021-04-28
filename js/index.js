@@ -164,10 +164,11 @@ $(function () {
 
 	function slideDream() {
 		var el = '.dream-wrapper'
-		var elSwiper = '.dream-wrapper .swiper-container'
-		var swiper = new Swiper(elSwiper, getSwiperOptions(el, { break: 3 })
-		);
+		var container = '.dream-wrapper .swiper-container'
+		/*
+		var swiper = new Swiper(container, getSwiper(el, { break: 3 }));
 		swiperHover(swiper, el)
+		*/
 	}
 
 	function slidePromo() {
@@ -189,11 +190,9 @@ $(function () {
 				html += '</li>';
 				$slideWrap.append(html)
 			})
-			var el = '.promo-wrapper'
-		var elSwiper = '.promo-wrapper .swiper-container'
-		var swiper = new Swiper(elSwiper, getSwiperOptions(el, { break: 4 })
-		);
-		swiperHover(swiper, el)
+
+			var container = '.promo-wrapper .swiper-container'
+			var swiper = getSwiper(container, { break: 4 });
 		}
 
 		$.get('../json/promotion.json', onGetData)
