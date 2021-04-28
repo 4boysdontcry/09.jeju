@@ -82,11 +82,11 @@ $(function () {
 			navigation: {
         nextEl: '.dream-wrapper .bt-slide.right',
         prevEl: '.dream-wrapper .bt-slide.left',
-      },
+    },
 			autoplay: {
         delay: 3000,
         disableOnInteraction: true,
-      },
+    },
 			loop: true,
 			slidesPerView: 1,
 			spaceBetween: 40,
