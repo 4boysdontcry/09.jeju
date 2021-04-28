@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<style>
+		.wrapper {width: 30%; margin: 100px auto; border: 10px solid red;}
+		.list {width: 100%; border: 10px solid blue;}
+	</style>
+</head>
+<body>
+		<div class="wrapper">
+			<div class="list">
+				<!-- <img src="../img/index/3348.jpg"> -->
+				<img src="http://www.kbmaeil.com/news/photo/202005/845446_859995_210.jpg">
+			</div>
+		</div>
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script>
+			var ratio = 1.25        // ratio는 width 길이의 %를 찾아줌 (width의 1.25배 길이를 가져온다.)
+			$(window).resize(onResize).trigger('resize')
+			function onResize() {
+				var width = $(".list").innerWidth()
+				var height = width * ratio
+				$(".list").innerHeight(height)
+                
+				var src = $(".list").find('img').attr('src')
+                var style = 'width:100%; height:100%; background-size: cover; background-image: url('+src+'); background-position: center;'
+				var html = '<div style="'+style+'"></div>'
+                $(".list").html(html)
+            }
+		</script>
+</body>
+</html>

@@ -163,12 +163,7 @@ $(function () {
 	}
 
 	function slideDream() {
-		var el = '.dream-wrapper'
-		var container = '.dream-wrapper .swiper-container'
-		/*
-		var swiper = new Swiper(container, getSwiper(el, { break: 3 }));
-		swiperHover(swiper, el)
-		*/
+		var swiper = getSwiper('.dream-wrapper', { break: 3 })
 	}
 
 	function slidePromo() {
@@ -179,23 +174,20 @@ $(function () {
 			// for(var i=0; i<r.promo.length; i++) {}
 			r.promo.forEach(function(v, i) {
 				var html = ''
-				html += '<li class="slide swiper-slide">';
-				html += '<div class="img-wrap">';
-				html += '<img src="'+v.src+'" alt="메뉴" class="w-100">';
-				html += '</div>';
-				html += '<div class="cont-wrap">';
-				html += '<h3 class="title">'+v.title+'</h3>';
-				html += '<div class="desc">'+v.desc+'</div>';
-				html += '</div>';
-				html += '</li>';
+				html += '<li class="slide swiper-slide">'
+				html += '<div class="img-wrap ratio" data-ratio="1">'
+				html += '<div class="ratio-bg" style="background-image: url('+v.src+');"></div>'
+				html += '</div>'
+				html += '<div class="cont-wrap">'
+				html += '<h3 class="title">'+v.title+'</h3>'
+				html += '<div class="desc">'+v.desc+'</div>'
+				html += '</div>'
+				html += '</li>'
 				$slideWrap.append(html)
 			})
-
-			var container = '.promo-wrapper .swiper-container'
-			var swiper = getSwiper(container, { break: 4 });
+			var swiper = getSwiper('.promo-wrapper', { break: 4 });
 		}
-
-		$.get('../json/promotion.json', onGetData)
+		$.get('../json/promotion.json', onGetData)	// init
 	}
 
 })
