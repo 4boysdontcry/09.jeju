@@ -18,6 +18,7 @@ $(function () {
 	slideMain()
 	slideDream()
 	slidePromo()
+	slideRoom()
 	initStyle()
 
 	function setCookie() {
@@ -169,7 +170,7 @@ $(function () {
 
 	function slidePromo() {
 		var $promoWrapper = $('.promo-wrapper')
-		var $slideWrap = $promoWrapper.find('.slide-wrap')
+		var $slideWrap = $promoWrapper.find('.slide-wrapper')
 
 		function onGetData(r) {
 			// for(var i=0; i<r.promo.length; i++) {}
@@ -203,5 +204,8 @@ $(function () {
 		}
 	}
 
+	function slideRoom(){
+		var swiper = getSwiper('.room-wrapper', { break: 2});
+	}
 
 })
