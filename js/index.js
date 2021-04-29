@@ -18,8 +18,8 @@ $(function () {
 	slideMain()
 	slideDream()
 	slidePromo()
-	slideRoom()
 	initStyle()
+	slideRoom()
 
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper')
@@ -170,7 +170,7 @@ $(function () {
 
 	function slidePromo() {
 		var $promoWrapper = $('.promo-wrapper')
-		var $slideWrap = $promoWrapper.find('.slide-wrapper')
+		var $slideWrapper = $promoWrapper.find('.slide-wrapper')
 
 		function onGetData(r) {
 			// for(var i=0; i<r.promo.length; i++) {}
@@ -185,18 +185,18 @@ $(function () {
 				html += '<div class="desc">'+v.desc+'</div>'
 				html += '</div>'
 				html += '</li>'
-				$slideWrap.append(html)
+				$slideWrapper.append(html)
 			})
 			var swiper = getSwiper('.promo-wrapper', { break: 4, pager: false });
 		}
-		$.get('../json/promotion.json', onGetData)	// init		ajax로 가져옴
+		$.get('../json/promotion.json', onGetData)	// init
 	}
 
-	function initStyle(){
+	function initStyle() {
 		$(window).resize(onResize).trigger('resize')
-		function onResize(){
+		function onResize() {
 			$('.style-wrapper .ratio-wrap').each(function(i) {
-				var ratio = $(this).data('ratio') // data-ratio
+				var ratio = $(this).data('ratio')
 				var width = $(this).innerWidth()
 				var height = width * Number(ratio)
 				$(this).innerHeight(height)
@@ -204,8 +204,34 @@ $(function () {
 		}
 	}
 
-	function slideRoom(){
-		var swiper = getSwiper('.room-wrapper', { break: 2});
+	function slideRoom() {
+		var room = [], swiper
+		var $movingBox = $('.room-wrapper .desc-wrapper .moving-box')
+		var $tag = $('.room-wrapper .desc-wrapper .tag > div')
+		var $title = $('.room-wrapper .desc-wrapper .title > div')
+		var $desc = $('.room-wrapper .desc-wrapper .desc > div')
+		function onGetData(r) {
+			room = r.room.slice()
+			console.log(room)
+			swiper = getSwiper('.room-wrapper', { break: 2, speed: 600 })
+			swiper.on('slideChange', onBefore)
+			swiper.on('slideChangeTransitionEnd', onChange)
+			showDesc(0)
+		}
+		function onBefore(e){
+			$movingBox.removeClass('active')
+		}
+		function onChange(e) {
+			var idx = e.realIndex
+			showDesc(idx)
+		}
+		function showDesc(n){
+			$tag.text(room[n].tag)
+			$title.text(room[n].title)
+			$desc.text(room[n].desc)
+			$movingBox.addClass('active')
+		}
+		$.get('../json/room.json', onGetData)
 	}
 
 })
