@@ -212,8 +212,8 @@ $(function () {
 		var $title = $('.room-wrapper .desc-wrapper .title > div')
 		var $desc = $('.room-wrapper .desc-wrapper .desc > div')
 
-		function onGetData(r) {			//json에서 데이터를 가져온다.
-			room = r.room.slice()
+		function onGetData(r) {			//json에서 데이터를 가져와 onGetData함수 실행
+			room = r.room.slice()			//slice는 가져온 r(데이터)를 쪼개서 각각에 넣는다.
 			console.log(room)
 			swiper = getSwiper('.room-wrapper', { break: 2, speed: 600 })
 			swiper.on('slideChange', onBefore)
@@ -230,23 +230,23 @@ $(function () {
 			showDesc(idx)
 		}
 
-		function showDesc(n){			// 가져온 data를 넣고 액티브로 animation을 넣는다.
+		function showDesc(n){			// 가져온 data를 $~들에 넣고, addClass('active')로 animation을 넣는다.
 			$tag.text(room[n].tag)
 			$title.text(room[n].title)
 			$desc.text(room[n].desc)
 			$movingBox.addClass('active')
 		}
-
 		$.get('../json/room.json', onGetData)
 	}
 
 function slideSvc(){
 	var $slideWrapper = $('.svc-wrapper .slide-wrapper')
-	var swiper
+	var swiper, lastIdx
 	function onGetData(r){
 		r.svc.forEach(function(v, i){
-			var html = ''
-			html += '<li class="slide swiper-slide">'
+		lastIdx = r.svc.length - 1
+		var html = ''
+			html += '<li class="slide swiper-slide" title="'+i+'">'
 			html += '<div class="img-wrap">'
 			html += '<img src="'+v.src+'" alt="svc" class="w-100">'
 			html += '</div>'
@@ -255,15 +255,17 @@ function slideSvc(){
 			$slideWrapper.append(html)
 		})
 		swiper = getSwiper('.svc-wrapper', {'break':2, 'speed': 600})
-		swiper.on('slideChange', onBefore)
-		swiper.on('slideChangeTransitionEnd', onAfter)
+		swiper.on('slideChange', onChange)
+		showAni(0)
 	}
-	function onBefore(e){
-		// console.log(e.previousIndex, e.activeIndex)
+	function onChange(e){
+		console.log(e.realIndex)
+		var n = (e.realIndex == lastIdx ? 0 : e.realIndex + 1)
+		showAni(n)
 	}
-
-	function onAfter(e) {
-		
+	function showAni(n){		// n은 e.realIndex + 1 값이다.
+		$slideWrapper.find('.slide').removeClass('active')
+		$slideWrapper.find('.slide[title="'+n+'"]').addClass('active')
 	}
 	$.get('../json/svc.json', onGetData)
 }
