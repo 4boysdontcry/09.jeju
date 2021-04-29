@@ -20,6 +20,7 @@ $(function () {
 	slidePromo()
 	initStyle()
 	slideRoom()
+	slideSvc()
 
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper')
@@ -210,28 +211,63 @@ $(function () {
 		var $tag = $('.room-wrapper .desc-wrapper .tag > div')
 		var $title = $('.room-wrapper .desc-wrapper .title > div')
 		var $desc = $('.room-wrapper .desc-wrapper .desc > div')
-		function onGetData(r) {
+
+		function onGetData(r) {			//json에서 데이터를 가져온다.
 			room = r.room.slice()
 			console.log(room)
 			swiper = getSwiper('.room-wrapper', { break: 2, speed: 600 })
 			swiper.on('slideChange', onBefore)
-			swiper.on('slideChangeTransitionEnd', onChange)
+			swiper.on('slideChangeTransitionEnd', onAfter)
 			showDesc(0)
 		}
+
 		function onBefore(e){
 			$movingBox.removeClass('active')
 		}
-		function onChange(e) {
+
+		function onAfter(e) {
 			var idx = e.realIndex
 			showDesc(idx)
 		}
-		function showDesc(n){
+
+		function showDesc(n){			// 가져온 data를 넣고 액티브로 animation을 넣는다.
 			$tag.text(room[n].tag)
 			$title.text(room[n].title)
 			$desc.text(room[n].desc)
 			$movingBox.addClass('active')
 		}
+
 		$.get('../json/room.json', onGetData)
 	}
 
+function slideSvc(){
+	var $slideWrapper = $('.svc-wrapper .slide-wrapper')
+	var swiper
+	function onGetData(r){
+		r.svc.forEach(function(v, i){
+			var html = ''
+			html += '<li class="slide swiper-slide">'
+			html += '<div class="img-wrap">'
+			html += '<img src="'+v.src+'" alt="svc" class="w-100">'
+			html += '</div>'
+			html += '<h4 class="title">'+v.title+'</h4>'
+			html += '</li>'
+			$slideWrapper.append(html)
+		})
+		swiper = getSwiper('.svc-wrapper', {'break':2, 'speed': 600})
+		swiper.on('slideChange', onBefore)
+		swiper.on('slideChangeTransitionEnd', onAfter)
+	}
+	function onBefore(e){
+		// console.log(e.previousIndex, e.activeIndex)
+	}
+
+	function onAfter(e) {
+		
+	}
+	$.get('../json/svc.json', onGetData)
+}
+
 })
+
+
