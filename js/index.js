@@ -77,7 +77,7 @@ $(function () {
 			}
 		}
 	
-		function ani() {
+		function onAni() {
 			$(this).addClass('active');
 			video.currentTime = 0;
 			if ($slide.eq(idx).hasClass('is-video')) video.play();
@@ -98,7 +98,7 @@ $(function () {
 			$slide.removeClass('active');
 			$slide.eq(idx).stop().animate({
 				'left': 0
-			}, speed, ani);
+			}, speed, onAni);
 		}
 
 		$slide.eq(idx).css('z-index', depth++);
@@ -111,7 +111,7 @@ $(function () {
 		$('.bt-video').click(onModalVideo);
 		$('.modal-video').find('.bt-close').click(onModalVideoClose);
 
-		ani();
+		video.addEventListener('loadedmetadata', onAni); // 시작시점
 	}
 
 	function weather() {
@@ -220,11 +220,11 @@ $(function () {
 			swiper.on('slideChangeTransitionEnd', onAfter);
 			showDesc(0);
 		}
-		function onBefore(e) {
+		function onBefore() {
 			$movingBox.removeClass('active');
 		}
-		function onAfter(e) {
-			var idx = e.realIndex;
+		function onAfter() {
+			var idx = this.realIndex;
 			showDesc(idx);
 		}
 		function showDesc(n) {
@@ -255,8 +255,8 @@ $(function () {
 			swiper.on('slideChange', onChange);
 			showAni(1);
 		}
-		function onChange(e) {
-			showAni( (e.realIndex == lastIdx) ? 0 : e.realIndex + 1 );
+		function onChange() {
+			showAni( (this.realIndex == lastIdx) ? 0 : this.realIndex + 1 );
 		}
 		function showAni(n) {
 			$slideWrapper.find('.slide').removeClass('active');
