@@ -22,9 +22,13 @@
     <script src="../js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <form action="">        <!-- action -->
-
+    <div class="container">
+        <form action="#" method="GET">
+            <div class="form-inline p-3">
+                <input class="form-control m-2" type="text" name="query" placeholder="작성자">
+                <input class="form-control m-2 w-50" type="text" name="comment" placeholder="한줄 감상평">       <!-- class를 통해 부트스트랩이 디자인을 넣어줌 -->
+                <button class="btn btn-primary m-2">등록</button>
+            </div>
         </form>
     </div>
     <script src="../js/12.form.js"></script>
