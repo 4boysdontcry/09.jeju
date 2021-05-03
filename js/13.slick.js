@@ -1,0 +1,2 @@
+
+    $('.slick-wrapper').slick({});
