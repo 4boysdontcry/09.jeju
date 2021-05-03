@@ -22,6 +22,8 @@ $(function () {
 	slideRoom();
 	slideSvc();
 	slideSns();
+	initContact();
+
 
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper');
@@ -280,6 +282,40 @@ $(function () {
 			swiper = getSwiper('.sns-wrapper', { break: 7, space: 0, pager: false });
 		}
 		$.get('../json/sns.json', onGetData);
+	}
+
+	function initContact() {
+		/* *********Global******** */
+		var emailCheck = false; // 이메일 검증을 통과했는가?
+		var agreeCheck = false; // 이용약관을 동의했는가?
+		var $form = $('.contact-wrapper .mail-form');
+		var $input = $('.contact-wrapper .mail-input');
+		var $button = $('.contact-wrapper .mail-send');
+		var $alert = $('.contact-wrapper .valid-alert');
+		var $check = $('.contact-wrapper .agree-mail');
+		
+		/* *********Event Init******** */
+		$input.blur(onBlur)
+		$check.change(onChange)
+
+		/* *********Event Callback******** */
+		function onBlur(){
+			var email = $(this).val().trim();
+			if(validEmail(email)){
+				emailCheck = true;
+				$alert.removeClass('active')
+			}
+		else {
+			emailCheck = false;
+			$alert.addClass('active')
+		}
+	}
+
+	function onChange(){
+		console.log($(this).is(':checked'))
+	}
+
+		/* *********User Function******** */
 	}
 })
 
