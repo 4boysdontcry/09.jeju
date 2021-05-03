@@ -285,37 +285,56 @@ $(function () {
 	}
 
 	function initContact() {
-		/* *********Global******** */
-		var emailCheck = false; // 이메일 검증을 통과했는가?
-		var agreeCheck = false; // 이용약관을 동의했는가?
+		/********* Global *********/
+		var emailChk = false; // 이메일 검증을 통과했는가?
+		var agreeChk = false; // 이용약관을 동의했는가?
 		var $form = $('.contact-wrapper .mail-form');
 		var $input = $('.contact-wrapper .mail-input');
 		var $button = $('.contact-wrapper .mail-send');
 		var $alert = $('.contact-wrapper .valid-alert');
 		var $check = $('.contact-wrapper .agree-mail');
-		
-		/* *********Event Init******** */
-		$input.blur(onBlur)
-		$check.change(onChange)
 
-		/* *********Event Callback******** */
-		function onBlur(){
+		/********* Event Init *********/
+		$input.blur(onBlur);
+		$check.change(onChange);
+		$form.submit(onSubmit);
+
+		/********* Event Callback *********/
+		function onBlur() {
 			var email = $(this).val().trim();
-			if(validEmail(email)){
-				emailCheck = true;
+			if (validEmail(email)) {
+				emailChk = true;
 				$alert.removeClass('active')
+			} else {
+				emailChk = false;
+				$alert.addClass('active')
 			}
-		else {
-			emailCheck = false;
-			$alert.addClass('active')
+			$button.attr('disabled', !(emailChk && agreeChk))
 		}
-	}
 
-	function onChange(){
-		console.log($(this).is(':checked'))
-	}
+		function onChange() {
+			agreeChk = $(this).is(':checked');
+			$button.attr('disabled', !(emailChk && agreeChk))
+		}
+
+		function onSubmit(e) {
+			e.preventDefault();	// submit이므로 전송되어야 하는데 전송기능을 막는다.
+			$form[0].contact_number.value = Math.random() * 100000 | 0;
+			emailjs.sendForm('service_gmail', 'template_gmail', this).then(function () {
+				alert('뉴스레터 신청이 완료되었습니다.');
+				$form[0].reset();
+				$button.attr('disabled', true)
+				agreeChk = false;
+				emailChk = false;
+			}, function (error) {
+				alert('뉴스레터 신청 오류!\n관리자에게 문의하세요.')
+			});
+			return false;
+		}
 
 		/* *********User Function******** */
+		emailjs.init('user_pwPZEzPsmfPrNGtfDQt7X');
 	}
+	
 })
 
