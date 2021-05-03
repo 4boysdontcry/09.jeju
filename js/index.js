@@ -319,7 +319,7 @@ $(function () {
 
 		function onSubmit(e) {
 			e.preventDefault();	// submit이므로 전송되어야 하는데 전송기능을 막는다.
-			$form[0].contact_number.value = Math.random() * 100000 | 0;
+			$form[0].contact_number.value = Math.random() * 100000 | 0;		// $form[0] -> 문서내의 모든 form중 첫번째 폼을 의미함
 			emailjs.sendForm('service_gmail', 'template_gmail', this).then(function () {
 				alert('뉴스레터 신청이 완료되었습니다.');
 				$form[0].reset();
