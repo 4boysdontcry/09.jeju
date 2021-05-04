@@ -39,7 +39,6 @@ $(function () {
 		]
 	}
 
-
 	weather();
 	setCookie();
 	slideMain();
@@ -50,7 +49,6 @@ $(function () {
 	slideSvc();
 	slideSns();
 	initContact();
-
 
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper');
@@ -202,21 +200,21 @@ $(function () {
 		var $btNext = $('.dream-wrapper .bt-slide.right');
 		var options = cloneObject(slick);
 		$slick.slick(options);
-		makeSlickButton($slick, $btPrev, $btNext)
+		makeSlickButton($slick, $btPrev, $btNext);
 	}
 
 	function slidePromo() {
 		var $promo = $('.promo-wrapper');
 		var $slick = $promo.find('.slide-wrapper');
-		var $btPrev =  $promo.find('.bt-slide.left');
-		var $btNext =  $promo.find('.bt-slide.right');
+		var $btPrev = $promo.find('.bt-slide.left');
+		var $btNext = $promo.find('.bt-slide.right');
 		var options = cloneObject(slick);
 
 		function onGetData(r) {
 			// for(var i=0; i<r.promo.length; i++) {}
 			r.promo.forEach(function (v, i) {
 				var html = '';
-				html += '<li class="slide swiper-slide">';
+				html += '<li class="slide">';
 				html += '<div class="img-wrap ratio-wrap" data-ratio="1">';
 				html += '<div class="ratio-bg" style="background-image: url(' + v.src + ');"></div>';
 				html += '</div>';
@@ -227,63 +225,55 @@ $(function () {
 				html += '</li>';
 				$slick.append(html);
 			});
-			options.slidesToShow = 4,
-			options.dots = false,
-			options.responsive.unshift({breakpoint:992, settings:{slidesToShow: 3}}),		// unshift : 맨앞에 데이터 집어넣기, push는 맨뒤에 넣음
+			
+			options.slidesToShow = 4;
+			options.dots = false;
+			options.responsive.unshift({breakpoint: 992, settings: {slidesToShow: 3}});
 			$slick.slick(options);
-			makeSlickButton($slick, $btPrev, $btNext)
+			makeSlickButton($slick, $btPrev, $btNext);
 			$(window).trigger('resize');
 		}
 		$.get('../json/promotion.json', onGetData); // init
 	}
 
 	function initStyle() {
-		$(window).resize(onResize).trigger('resize');
-
-		function onResize() {
-			$('.style-wrapper .ratio-wrap').each(function (i) {
-				var ratio = $(this).data('ratio');
-				var width = $(this).innerWidth();
-				var height = width * Number(ratio);
-				$(this).innerHeight(height);
-			})
-		}
+		
 	}
 
 	function slideRoom() {
 		var room = [], swiper;
-		var $room = $('.room-wrapper')
-		var $slick = $room.find('.slide-wrapper')
+		var $room = $('.room-wrapper');
+		var $slick = $room.find('.slide-wrapper');
 		var $movingBox = $('.room-wrapper .desc-wrapper .moving-box');
 		var $tag = $('.room-wrapper .desc-wrapper .tag > div');
 		var $title = $('.room-wrapper .desc-wrapper .title > div');
 		var $desc = $('.room-wrapper .desc-wrapper .desc > div');
-		var $btPrev =  $room.find('.bt-slide.left');
-		var $btNext =  $room.find('.bt-slide.right');
+		var $btPrev = $room.find('.bt-slide.left');
+		var $btNext = $room.find('.bt-slide.right');
 		var options = cloneObject(slick);
 
 		function onGetData(r) {
 			room = r.room.slice();
+			options.autoplaySpeed = 4000;
 			options.slidesToShow = 2;
 			options.dots = false;
-			options.responsive.pop();		// pop 배열의 맨 마지막 요소를 빼낸다.(지워준다)
+			options.responsive.pop();	// 배열의 마지막 요소를 빼낸다
 			options.responsive[0].breakpoint = 992;
 			options.responsive[0].settings.slidesToShow = 1;
 			$slick.slick(options);
 			makeSlickButton($slick, $btPrev, $btNext);
 			$(window).trigger('resize');
 
-			// swiper.on('slideChange', onBefore);
-			// swiper.on('slideChangeTransitionEnd', onAfter);
-			// showDesc(0);
+			$slick.on('beforeChange', onBefore);
+			$slick.on('afterChange', onAfter);
+			showDesc(0);
 		}
 
 		function onBefore() {
 			$movingBox.removeClass('active');
 		}
 
-		function onAfter() {
-			var idx = this.realIndex;
+		function onAfter(e, slick, idx) {
 			showDesc(idx);
 		}
 
@@ -297,8 +287,12 @@ $(function () {
 	}
 
 	function slideSvc() {
-		var $slideWrapper = $('.svc-wrapper .slide-wrapper');
-		var swiper, lastIdx;
+		var $svc = $('.svc-wrapper');
+		var $slick = $svc.find('.slide-wrapper');
+		var $btPrev = $svc.find('.bt-slide.left');
+		var $btNext = $svc.find('.bt-slide.right');
+		var options = cloneObject(slick);
+		var lastIdx;
 
 		function onGetData(r) {
 			lastIdx = r.svc.length - 1;
@@ -310,24 +304,30 @@ $(function () {
 				html += '</div>';
 				html += '<h4 class="title">' + v.title + '</h4>';
 				html += '</li>';
-				$slideWrapper.append(html);
+				$slick.append(html);
 			})
-		// 	swiper = getSwiper('.svc-wrapper', {
-		// 		break: 2,
-		// 		speed: 600,
-		// 		pager: false
-		// 	});
-		// 	swiper.on('slideChange', onChange);
-		// 	showAni(1);
-		// }
+			options.slidesToShow = 2;
+			options.dots = false;
+			options.responsive.pop();		// pop: 배열의 마지막 요소를 빼낸다.(지운다.)
+			options.responsive[0].breakpoint = 992;
+			options.responsive[0].settings.slidesToShow = 1;
+			$slick.slick(options);
+			makeSlickButton($slick, $btPrev, $btNext);
+			$slick.on('beforeChange', onBefore);
+			$(window).trigger('resize');
+			showAni(1);
+		}
+		
+		function onBefore(e, slick, current, idx) {		// 여기서 idx : 다음페이지의 인덱스
+			showAni((idx === lastIdx) ? 0 : idx + 1);
+		}
 
-		function onChange() {
-			showAni((this.realIndex == lastIdx) ? 0 : this.realIndex + 1);
+		function onAfter(e, slick, idx) {
 		}
 
 		function showAni(n) {
-			$slideWrapper.find('.slide').removeClass('active');
-			$slideWrapper.find('.slide[title="' + n + '"]').addClass('active');
+			$slick.find('.slide').removeClass('active');
+			$slick.find('.slide[title="' + n + '"]').addClass('active');
 		}
 		$.get('../json/svc.json', onGetData);
 	}
@@ -345,11 +345,11 @@ $(function () {
 				html += '</li>';
 				$slideWrapper.append(html);
 			})
-			// swiper = getSwiper('.sns-wrapper', {
-			// 	break: 7,
-			// 	space: 0,
-			// 	pager: false
-			// });
+			/* swiper = getSwiper('.sns-wrapper', {
+				break: 7,
+				space: 0,
+				pager: false
+			}); */
 		}
 		$.get('../json/sns.json', onGetData);
 	}
@@ -389,7 +389,7 @@ $(function () {
 
 		function onSubmit(e) {
 			e.preventDefault(); // submit이므로 전송되어야 하는데 전송기능을 막는다.
-			$form[0].contact_number.value = Math.random() * 100000 | 0; // $form[0] -> 문서내의 모든 form중 첫번째 폼을 의미함
+			$form[0].contact_number.value = Math.random() * 100000 | 0;
 			emailjs.sendForm('service_gmail', 'template_gmail', this).then(function () {
 				alert('뉴스레터 신청이 완료되었습니다.');
 				$form[0].reset();
@@ -402,38 +402,36 @@ $(function () {
 			return false;
 		}
 
-		/* *********User Function******** */
-		emailjs.init('user_pwPZEzPsmfPrNGtfDQt7X');
+		/********* User Function *********/
+		emailjs.init('user_TROFqVnbPGZyygPAci7nt'); // 본인거로 꼭 바꿔넣으세요.
 	}
-
-}
-/* *********Global Function******** */
-function makeSlickButton($slick, $prev, $next){
-	$prev.click(function() {
-		$slick.slick('slickPrev') 
-	});
-	$next.click(function() { 
-		$slick.slick('slickNext')
-	});
-	$slick.find('.slick-dots').on('mouseenter', function() {
-    $slick.slick('slickPause');
-});
-	$slick.find('.slick-dots').on('mouseleave', function() {
-    $slick.slick('slickPlay');
-});
-}
-
-function onResize(e) {
-	$('.ratio-wrap').each(function(i) {
-		var ratio = $(this).data('ratio') // data-ratio
-		var width = $(this).innerWidth();
-		var height = width * Number(ratio);
-		$(this).innerHeight(height);
-	})
-}
-
-$(window).resize(onResize).trigger('resize');
-
-
-
+	
+	
+	/********* Global Function *********/
+	function makeSlickButton($slick, $prev, $next) {
+		$prev.click(function() { 
+			$slick.slick('slickPrev') 
+		});
+		$next.click(function() { 
+			$slick.slick('slickNext') 
+		});
+		$slick.find('.slick-dots').on('mouseenter', function() {
+			$slick.slick('slickPause');
+		});
+		$slick.find('.slick-dots').on('mouseleave', function() {
+			$slick.slick('slickPlay');
+		});
+	}
+	
+	function onResize(e) {
+		$('.ratio-wrap').each(function(i) {
+			var ratio = $(this).data('ratio');
+			var width = $(this).innerWidth();
+			var height = width * Number(ratio);
+			$(this).innerHeight(height);
+		})
+	}
+	
+	
+	$(window).resize(onResize).trigger('resize');
 })
