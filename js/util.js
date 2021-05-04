@@ -165,3 +165,12 @@ function getSwiper(el, opt) {
 
 	return swiper;
 }
+
+
+
+/*************** Object DeepCopy *****************/
+function cloneObject(obj){
+	// var props = {...slick};		//ES6 DeepCopy
+	// var options = JSON.parse(JSON.stringify(slick));		//ES5 DeepCopy
+	return JSON.parse(JSON.stringify(obj))
+}
