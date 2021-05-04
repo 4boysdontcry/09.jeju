@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../css/all.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+
+    .wrapper {max-width: 1000px; height: 200px; margin: auto; border: 5px solid blue; display: flex;}
+    .box {width: 150px;  border: 10px solid red; background-color: coral;} /* width가 %로 들어가서 shirink를 써주는 의미가 없음 */
+    .box:nth-child(2) {flex-shrink: 0;} /* shirink가 0이어서('줄어들지 마' 여서) width의 값을 지키고 있음 ( min-width와 비슷한 기능을 한다 ) */
+    .box:nth-child(3) {flex-grow: 1;} /* width를 꽉채우기 위해 3번 박스만 크기가 늘어남 */
+
+  </style>
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+
+</body>
+</html>
