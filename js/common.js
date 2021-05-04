@@ -40,7 +40,7 @@ $(function() {
 		if(scTop == 0) {
 			if($.cookie('hideNotice') !== 'Y') $notice.show();
 			$link.show();
-			$header.css('top', 'unset');
+			$header.css('top', 'auto');
 			$header.removeClass('active');
 		}
 		/* else if(scTop < 150) {
@@ -65,6 +65,12 @@ $(function() {
 		else $('.bt-moving-top').addClass('active');
 	}
 
+	// function chgHeader(){
+	// 	var $notice = $('.notice-wrapper');
+	// 	var $header = $('.header-wrapper');
+	// 	var top = $notice.outerHeight();
+	// 	$header.css('top', top)
+	// }
 
 	/*************** 이벤트 등록 *****************/
 	$(window).scroll(onScroll).trigger('scroll');

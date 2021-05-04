@@ -355,7 +355,6 @@ $(function () {
 			options.responsive.unshift({breakpoint: 992, settings: {slidesToShow: 4}});
 			options.responsive.unshift({breakpoint: 1200, settings: {slidesToShow: 5}});
 			options.responsive.unshift({breakpoint: 1400, settings: {slidesToShow: 6}});
-			console.log(options.responsive)
 			$slick.slick(options);
 			makeSlickButton($slick, $btPrev, $btNext);
 		}
