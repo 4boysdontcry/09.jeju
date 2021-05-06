@@ -58,6 +58,9 @@ $(function() {
 			$header.css('top', 0);
 			$header.addClass('active');
 		}
+		if(isMobile) {
+			$header.addClass('active');			// 만약 모바일 기기라면 header에 항상 흰색배경을 넣어줌
+		}
 	}
 
 	function movingTop(scTop) {

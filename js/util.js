@@ -3,6 +3,11 @@
 || (or 연산자) - 둘 중 하나만 true여도 true를 반환. / 둘다 flase일때만 false를 반환
 */
 
+
+/****************** mobile-check ********************/
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+
 /****************** reg.EXP ********************/
 function validEmail(v){
 	// email 정규표현식
