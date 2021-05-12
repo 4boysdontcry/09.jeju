@@ -145,7 +145,7 @@ $(function () {
 		var $weather = $('.main-wrapper .weather');
 		var weatherURL = 'https://api.openweathermap.org/data/2.5/weather';
 		var weatherData = {
-			appid: '02efdd64bdc14b279bc91d9247db4722',
+			appid: 'b643d1c36ef820780490b2d990f49c60',
 			units: 'metric'
 		};
 		var weatherIcon = {
